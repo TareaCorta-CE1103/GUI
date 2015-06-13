@@ -5,12 +5,16 @@
  */
 package graficacion;
 
+import lists.ListaSdoble;
+
 /**
  *
  * @author luis
  */
 public class Inicio extends javax.swing.JFrame {
-
+    
+    private ListaSdoble _listaDeMetodos = new ListaSdoble();
+    
     /**
      * Creates new form Inicio
      */
@@ -31,35 +35,71 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
-        jComboBox4 = new javax.swing.JComboBox();
+        SortBox = new javax.swing.JComboBox();
+        InsertBox = new javax.swing.JComboBox();
+        DeleteBox = new javax.swing.JComboBox();
+        SearchBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1250, 510));
+        getContentPane().setLayout(null);
 
         jLabel1.setText("Sort");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(55, 47, 39, 25);
 
         jLabel2.setText("Insert");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(313, 45, 54, 29);
 
         jLabel3.setText("Delete");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(628, 47, 61, 25);
 
         jLabel4.setText("Search");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(914, 47, 62, 25);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BubbleSort", "SelectionSort", "InsertionSort", "MergeSort", "QuickSort", "HeapSort", "RaddixSort" }));
+        SortBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BubbleSort", "SelectionSort", "InsertionSort", "MergeSort", "QuickSort", "HeapSort", "RaddixSort" }));
+        SortBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SortBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SortBox);
+        SortBox.setBounds(55, 92, 171, 35);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        InsertBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        getContentPane().add(InsertBox);
+        InsertBox.setBounds(313, 92, 231, 35);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        DeleteBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        getContentPane().add(DeleteBox);
+        DeleteBox.setBounds(628, 92, 231, 35);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Binary Search", "Linear Search", "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        SearchBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Binary Search", "Linear Search", "All sorted linked list", "Binary Search Tree", "AVL Tree", "Splay Tree", "Red-Black Tree" }));
+        getContentPane().add(SearchBox);
+        SearchBox.setBounds(914, 92, 231, 35);
 
         jLabel5.setText("Seleccione un algoritmo de las siguientes categorías");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(299, 8, 486, 25);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Metodos a calcular:\n");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(50, 160, 1080, 250);
 
         jMenu1.setText("Archivo");
 
@@ -73,55 +113,12 @@ public class Inicio extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(299, 299, 299)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(329, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SortBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SortBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,10 +156,10 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox DeleteBox;
+    private javax.swing.JComboBox InsertBox;
+    private javax.swing.JComboBox SearchBox;
+    public static javax.swing.JComboBox SortBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -172,5 +169,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

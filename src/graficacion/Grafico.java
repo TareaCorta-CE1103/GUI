@@ -8,29 +8,44 @@ import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import facade.facade;
+import lists.ListaSdoble;
+import lists.Nodo;
 
 public class Grafico {
-    public static void main(String[] args) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
-        double tiempoDeEjecucion = 100;
-        double mejorCaso;
-        double peorCaso;
-        double casoPromedio;
-
-        for (int cantidadDeElementos = 100; cantidadDeElementos < 10001; 
-                cantidadDeElementos = cantidadDeElementos *10) {
-            
-            tiempoDeEjecucion = tiempoDeEjecucion *2;
-            mejorCaso = tiempoDeEjecucion;
-            dataset.addValue(mejorCaso, "Mejor caso", "" + cantidadDeElementos);
     
-            peorCaso = tiempoDeEjecucion * 5;
-            dataset.addValue(peorCaso, "Peor caso", "" + cantidadDeElementos);
- 
-            casoPromedio = tiempoDeEjecucion *7;
-            dataset.addValue(casoPromedio, "Caso promedio",
-                    "" + cantidadDeElementos);
+    private long _mejorCaso;
+    private long _peorCaso;
+    private long _casoPromedio;
+    private facade facade;
+    private ListaSdoble _mensajes;
+    private ListaSdoble _rnd;
+    private ListaSdoble _normal;
+    private ListaSdoble _worst;
+    
+    public Grafico(String pMensaje) {
+        facade= new facade();
+        facade.setMensaje(pMensaje);
+        _mensajes=facade.getMensajes();
+        facade.run();
+        _rnd=facade.getRand();
+        _normal=facade.getNormal();
+        _worst=facade.getWorst();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        Nodo tmp=_mensajes.getHead();
+        Nodo rnd= _rnd.getHead();
+        Nodo normal=_normal.getHead();
+        Nodo peor=_worst.getHead();
+        while(tmp!=null){
+            for (int cantidadDeElementos = 100; cantidadDeElementos < 10001; 
+                    cantidadDeElementos = cantidadDeElementos *10) {
+                setLines(dataset,(String)tmp.getData(), cantidadDeElementos,
+                        rnd, normal, peor);
+                rnd= rnd.getNext();
+                normal=normal.getNext();
+                peor=peor.getNext();
+            }
+            tmp=tmp.getNext();
         }
         JFreeChart Grafico = ChartFactory.createLineChart(
                 "Eficiencia del algoritmo",
@@ -41,6 +56,21 @@ public class Grafico {
         ChartFrame fr = new ChartFrame("Gráfico", Grafico);
         fr.pack();
         fr.setVisible(true);
+    }
+    
+    private void setLines(DefaultCategoryDataset pDataset, String pMetodo, 
+             int pLenghtDatos,Nodo pRnd, Nodo pNorm, Nodo pWorst){
+        facade.setMensaje(pMetodo);   
+        _mejorCaso =(long)pNorm.getData();
+        pDataset.addValue(_mejorCaso, "Mejor caso de: "+pMetodo, "" + pLenghtDatos);
+        _peorCaso = (long)pRnd.getData();
+        pDataset.addValue(_peorCaso, "Peor caso de: "+pMetodo, "" + pLenghtDatos);
+        _casoPromedio=(long)pWorst.getData();
+        pDataset.addValue(_casoPromedio, "Caso promedio de: "+pMetodo,"" + pLenghtDatos);
+    }
+    
+    public static void main(String[] args) {
+        Grafico nuevo =new  Grafico("inldinAV");
     }
 }
  
