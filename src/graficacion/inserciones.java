@@ -6,15 +6,16 @@
 package graficacion;
 
 import calculos.Constantes;
+import lists.ListaSdoble;
 /**
  *
  * @author osboxes
  */
 public class inserciones extends javax.swing.JFrame implements Constantes{
 
-    private String _metodo;
+    private int _metodo;
     private Grafico chartab;
-    private String _finalmesj="";
+    private ListaSdoble _metodos;
     /**
      * Creates new form inserciones
      */
@@ -100,27 +101,25 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
 
     private void Calc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Calc1ActionPerformed
         // TODO add your handling code here:
-        chartab=new Grafico(_finalmesj);
+        chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_Calc1ActionPerformed
 
     private void InsertBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBoxActionPerformed
         // TODO add your handling code here:
-        StringBuilder build=new StringBuilder();
-        if(InsertBox.getSelectedIndex()==0)
-            build.append(_metodo+Ldoble);
-        else if(InsertBox.getSelectedIndex()==1)
-            build.append(_metodo+BinarioT);
-        else if(InsertBox.getSelectedIndex()==2)
-            build.append(_metodo+AVL);
-        else if(InsertBox.getSelectedIndex()==3)
-            build.append(_metodo+Splay);
-        else if(InsertBox.getSelectedIndex()==4)
-            build.append(_metodo+R_N);
-        _finalmesj+=(build.toString());
+        if(InsertBox.getSelectedIndex()==cero)
+            _metodos.enQueue((_metodo*diez)+Ldoble);
+        else if(InsertBox.getSelectedIndex()==uno)
+            _metodos.enQueue((_metodo*diez)+BinarioT);
+        else if(InsertBox.getSelectedIndex()==dos)
+            _metodos.enQueue((_metodo*diez)+AVL);
+        else if(InsertBox.getSelectedIndex()==tres)
+            _metodos.enQueue((_metodo*diez)+Splay);
+        else if(InsertBox.getSelectedIndex()==cuatro)
+            _metodos.enQueue((_metodo*diez)+R_N);
     }//GEN-LAST:event_InsertBoxActionPerformed
 
-    public void setMensaje(String mensaje){
+    public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
     /**

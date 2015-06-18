@@ -23,7 +23,7 @@ public class Grafico {
     private ListaSdoble _normal;
     private ListaSdoble _worst;
     
-    public Grafico(String pMensaje) {
+    public Grafico(ListaSdoble pMensaje) {
         facade= new facade();
         facade.setMensaje(pMensaje);
         _mensajes=facade.getMensajes();
@@ -39,7 +39,7 @@ public class Grafico {
         while(tmp!=null){
             for (int cantidadDeElementos = 100; cantidadDeElementos < 10001; 
                     cantidadDeElementos = cantidadDeElementos *10) {
-                setLines(dataset,(String)tmp.getData(), cantidadDeElementos,
+                setLines(dataset,(int)tmp.getData(), cantidadDeElementos,
                         rnd, normal, peor);
                 rnd= rnd.getNext();
                 normal=normal.getNext();
@@ -58,9 +58,8 @@ public class Grafico {
         fr.setVisible(true);
     }
     
-    private void setLines(DefaultCategoryDataset pDataset, String pMetodo, 
-             int pLenghtDatos,Nodo pRnd, Nodo pNorm, Nodo pWorst){
-        facade.setMensaje(pMetodo);   
+    private void setLines(DefaultCategoryDataset pDataset, int pMetodo, 
+             int pLenghtDatos,Nodo pRnd, Nodo pNorm, Nodo pWorst){  
         _mejorCaso =(long)pNorm.getData();
         pDataset.addValue(_mejorCaso, "Mejor caso de: "+pMetodo, "" + pLenghtDatos);
         _peorCaso = (long)pRnd.getData();
@@ -70,7 +69,7 @@ public class Grafico {
     }
     
     public static void main(String[] args) {
-        Grafico nuevo =new  Grafico("inldinAV");
+        //Grafico nuevo =new  Grafico("inldinAV");
     }
 }
  

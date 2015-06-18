@@ -12,7 +12,7 @@ import calculos.Constantes;
  */
 public class main extends javax.swing.JFrame implements Constantes{
 
-    private String _metodo;
+    private int _metodo;
     private Ordenamientos _orde;
     private busquedas _busq;
     private borradores _borr;

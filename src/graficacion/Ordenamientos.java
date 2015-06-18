@@ -6,6 +6,7 @@
 package graficacion;
 
 import calculos.Constantes;
+import lists.ListaSdoble;
 
 /**
  *
@@ -13,8 +14,9 @@ import calculos.Constantes;
  */
 public class Ordenamientos extends javax.swing.JFrame implements Constantes{
 
-    private String _metodo;
-    private String _finalmesj="";
+    private int _metodo;
+    private Grafico chartab;
+    private ListaSdoble _metodos;
     
     /**
      * Creates new form sorts
@@ -98,27 +100,25 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
 
     private void SortBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortBoxActionPerformed
         // TODO add your handling code here:
-        StringBuilder build=new StringBuilder();
-        if(SortBox.getSelectedIndex()==0)
-            build.append(_metodo+Ldoble);
-        else if(SortBox.getSelectedIndex()==1)
-            build.append(_metodo+BinarioT);
-        else if(SortBox.getSelectedIndex()==2)
-            build.append(_metodo+AVL);
-        else if(SortBox.getSelectedIndex()==3)
-            build.append(_metodo+Splay);
-        else if(SortBox.getSelectedIndex()==4)
-            build.append(_metodo+R_N);
-        _finalmesj+=(build.toString());
+        if(SortBox.getSelectedIndex()==cero)
+            _metodos.enQueue((_metodo*diez)+Ldoble);
+        else if(SortBox.getSelectedIndex()==uno)
+            _metodos.enQueue((_metodo*diez)+BinarioT);
+        else if(SortBox.getSelectedIndex()==dos)
+            _metodos.enQueue((_metodo*diez)+AVL);
+        else if(SortBox.getSelectedIndex()==tres)
+            _metodos.enQueue((_metodo*diez)+Splay);
+        else if(SortBox.getSelectedIndex()==cuatro)
+            _metodos.enQueue((_metodo*diez)+R_N);
     }//GEN-LAST:event_SortBoxActionPerformed
 
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
         // TODO add your handling code here:
-        Grafico _chartab=new Grafico(_finalmesj);
+        Grafico _chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_CalcActionPerformed
 
-    public void setMensaje(String mensaje){
+    public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
     /**

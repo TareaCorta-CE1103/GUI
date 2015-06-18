@@ -6,6 +6,7 @@
 package graficacion;
 
 import calculos.Constantes;
+import lists.ListaSdoble;
 
 /**
  *
@@ -13,9 +14,9 @@ import calculos.Constantes;
  */
 public class busquedas extends javax.swing.JFrame implements Constantes{
 
-    private String _metodo;
+    private int _metodo;
     private Grafico chartab;
-    private String _finalmesj="";
+    private ListaSdoble _metodos;
     
     /**
      * Creates new form busquedas
@@ -99,31 +100,29 @@ public class busquedas extends javax.swing.JFrame implements Constantes{
 
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
         // TODO add your handling code here:
-        chartab=new Grafico(_finalmesj);
+        chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_CalcActionPerformed
 
     private void SearchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBoxActionPerformed
         // TODO add your handling code here:
-        StringBuilder build=new StringBuilder();
-        if(SearchBox.getSelectedIndex()==0)
-            build.append(_metodo+binariS);
-        else if(SearchBox.getSelectedIndex()==1)
-            build.append(_metodo+lineal);
-        else if(SearchBox.getSelectedIndex()==2)
-            build.append(_metodo+Ldoble);
-        else if(SearchBox.getSelectedIndex()==3)
-            build.append(_metodo+BinarioT);
-        else if(SearchBox.getSelectedIndex()==4)
-            build.append(_metodo+AVL);
-        else if(SearchBox.getSelectedIndex()==5)
-            build.append(_metodo+Splay);
-        else if(SearchBox.getSelectedIndex()==6)
-            build.append(_metodo+R_N);
-        _finalmesj+=(build.toString());
+        if(SearchBox.getSelectedIndex()==cero)
+            _metodos.enQueue((_metodo*diez)+binariS);
+        else if(SearchBox.getSelectedIndex()==uno)
+            _metodos.enQueue((_metodo*diez)+lineal);
+        else if(SearchBox.getSelectedIndex()==dos)
+            _metodos.enQueue((_metodo*diez)+Ldoble);
+        else if(SearchBox.getSelectedIndex()==tres)
+            _metodos.enQueue((_metodo*diez)+BinarioT);
+        else if(SearchBox.getSelectedIndex()==cuatro)
+            _metodos.enQueue((_metodo*diez)+AVL);
+        else if(SearchBox.getSelectedIndex()==cinco)
+            _metodos.enQueue((_metodo*diez)+Splay);
+        else if(SearchBox.getSelectedIndex()==seis)
+            _metodos.enQueue((_metodo*diez)+R_N);
     }//GEN-LAST:event_SearchBoxActionPerformed
 
-    public void setMensaje(String mensaje){
+    public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
     /**
