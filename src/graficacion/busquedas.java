@@ -9,7 +9,9 @@ import calculos.Constantes;
 import lists.ListaSdoble;
 
 /**
- *
+ * clase que es un jframe, esta clase sirve para abrir la ventana que va 
+ * dejarnos decidir que tipos de metodos de busqueda podemos hacer para los 
+ * metodos que se tengan.
  * @author osboxes
  */
 public class busquedas extends javax.swing.JFrame implements Constantes{
@@ -22,6 +24,7 @@ public class busquedas extends javax.swing.JFrame implements Constantes{
      * Creates new form busquedas
      */
     public busquedas() {
+        _metodos= new ListaSdoble();
         initComponents();
     }
 
@@ -98,12 +101,23 @@ public class busquedas extends javax.swing.JFrame implements Constantes{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * metodo que detecta cuando el boton de calcular se es presionado, 
+     * inicializa la clase que nos crea la grafica y cierra esa JFrame.
+     * @param evt 
+     */
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
         // TODO add your handling code here:
         chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_CalcActionPerformed
 
+    /**
+     * metodo que detecta las acciones realizadas por el comboBox cuando 
+     * seleccionamos un metodo de busqueda; segun lo que hayamos elejido lo 
+     * ingresa a una lista, que almacenara los metodos que vamos a realizar.
+     * @param evt 
+     */
     private void SearchBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBoxActionPerformed
         // TODO add your handling code here:
         if(SearchBox.getSelectedIndex()==cero)
@@ -122,6 +136,14 @@ public class busquedas extends javax.swing.JFrame implements Constantes{
             _metodos.enQueue((_metodo*diez)+R_N);
     }//GEN-LAST:event_SearchBoxActionPerformed
 
+    /**
+     * metodo que recibe un mensaje y es el que establece antes para que este 
+     * el tipo de metodo que vamos a calcular; si recibe un uno, se calcula una
+     * insercion, un dos es para borrado, 3 es para busqueda y 4 para 
+     * ordenamiento.
+     * @param mensaje dato tipo entero, recibe el dato segun el tipo de 
+     * operacion que se quiera realizar.
+     */
     public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }

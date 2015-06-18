@@ -1,8 +1,5 @@
 package graficacion;
-/**
- *
- * @author luis
- */
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -11,39 +8,52 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import facade.facade;
 import lists.ListaSdoble;
 import lists.Nodo;
+import calculos.Constantes;
 
-public class Grafico {
+/**
+ * clase que se utiliza para graficar los datos que se obtienen apartir del 
+ * facade, estos datos se agarrar y se ponen en los 
+ * @author luis
+ */
+public class Grafico implements Constantes{
     
-    private long _mejorCaso;
-    private long _peorCaso;
-    private long _casoPromedio;
-    private facade facade;
+    private facade _facade;
     private ListaSdoble _mensajes;
-    private ListaSdoble _rnd;
+    private ListaSdoble _better;
     private ListaSdoble _normal;
     private ListaSdoble _worst;
     
+    /**
+     * contructor de la clase, recibe una lista enlazada que es la que contiene
+     * los datos de los mensajes que pedimos, inicializa el facade, realiza los 
+     * calculos de los datos y empieza a ingresarlos a la grafica.
+     * @param pMensaje dato que pertenece a la clase 'ListaSdoble', este dato
+     * es el que contiene los mensajes que vamos a usar para realizar los 
+     * calculos.
+     */
     public Grafico(ListaSdoble pMensaje) {
-        facade= new facade();
-        facade.setMensaje(pMensaje);
-        _mensajes=facade.getMensajes();
-        facade.run();
-        _rnd=facade.getRand();
-        _normal=facade.getNormal();
-        _worst=facade.getWorst();
+        _facade=new facade();
+        _facade.run();
+        _normal=_facade.getNormal();
+        _better=_facade.getBetter();
+        _worst=_facade.getWorst();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         Nodo tmp=_mensajes.getHead();
-        Nodo rnd= _rnd.getHead();
+        Nodo mejor= _better.getHead();
         Nodo normal=_normal.getHead();
         Nodo peor=_worst.getHead();
         while(tmp!=null){
-            for (int cantidadDeElementos = 100; cantidadDeElementos < 10001; 
-                    cantidadDeElementos = cantidadDeElementos *10) {
-                setLines(dataset,(int)tmp.getData(), cantidadDeElementos,
-                        rnd, normal, peor);
-                rnd= rnd.getNext();
+            int lenght=cien;
+            for (int cantDatos = 0; cantDatos<(dos*diez)+1;cantDatos++){
+                setLines(dataset,getMetodo((int)tmp.getData()), lenght,
+                        mejor, normal, peor);
+                mejor=mejor.getNext();
                 normal=normal.getNext();
                 peor=peor.getNext();
+                if(lenght<(Mil+uno))
+                    lenght+=cien;
+                else if(lenght>=Mil &&lenght<cienMil+1)
+                    lenght+=Mil;
             }
             tmp=tmp.getNext();
         }
@@ -58,18 +68,128 @@ public class Grafico {
         fr.setVisible(true);
     }
     
-    private void setLines(DefaultCategoryDataset pDataset, int pMetodo, 
-             int pLenghtDatos,Nodo pRnd, Nodo pNorm, Nodo pWorst){  
-        _mejorCaso =(long)pNorm.getData();
-        pDataset.addValue(_mejorCaso, "Mejor caso de: "+pMetodo, "" + pLenghtDatos);
-        _peorCaso = (long)pRnd.getData();
-        pDataset.addValue(_peorCaso, "Peor caso de: "+pMetodo, "" + pLenghtDatos);
-        _casoPromedio=(long)pWorst.getData();
-        pDataset.addValue(_casoPromedio, "Caso promedio de: "+pMetodo,"" + pLenghtDatos);
+    /**
+     * metodo que decodifica el mensaje del metodo que vamos a realizar los 
+     * calculos y devuelve su nombre en un string.
+     * @param pMetodo dato tipo entero, que es el mensaje codificado.
+     * @return dato tipo String que es el nombre del metodo.
+     */
+    private String getMetodo(int pMetodo){
+        if(pMetodo/diez==insert)
+            return getInsertMetodo(pMetodo-diez);
+        else if(pMetodo/diez==delete)
+            return getDeleMetodo(pMetodo-(dos*diez));
+        else if(pMetodo/diez==search)
+            return getSerchMetodo(pMetodo-(tres*diez));
+        else
+            return getSortMetodo(pMetodo-(cuatro*diez));
     }
     
-    public static void main(String[] args) {
-        //Grafico nuevo =new  Grafico("inldinAV");
+    /**
+     * metodo que decodifica lo que reciba del mensaje y lo envia diciendo cual
+     * es el metodo que se quiso calcular para un insercion.
+     * @param pMetodo dato tipo entero, que es el mensaje codificado.
+     * @return dato tipo String que es el nombre del metodo.
+     */
+    private String getInsertMetodo(int pMetodo){
+        if(pMetodo==AVL)
+            return "insertar AVL";
+        else if(pMetodo==BinarioT)
+            return "insertar binario";
+        else if(pMetodo==Splay)
+            return "insertar splay";
+        else if(pMetodo==R_N)
+            return "insertar R&N";
+        else
+            return "insertar lista";
+    }
+    
+    /**
+     * metodo que decodifica lo que reciba del mensaje y lo envia diciendo cual
+     * es el metodo que se quiso calcular para un borrado.
+     * @param pMetodo dato tipo entero, que es el mensaje codificado.
+     * @return dato tipo String que es el nombre del metodo.
+     */
+    private String getDeleMetodo(int pMetodo){
+        if(pMetodo==AVL)
+            return "borrar AVL";
+        else if(pMetodo==BinarioT)
+            return "borrar binario";
+        else if(pMetodo==Splay)
+            return "borrar splay";
+        else if(pMetodo==R_N)
+            return "borrar R&N";
+        else
+            return "borrar lista";
+    }
+    
+    /**
+     * metodo que decodifica lo que reciba del mensaje y lo envia diciendo cual
+     * es el metodo que se quiso calcular para un busqueda.
+     * @param pMetodo dato tipo entero, que es el mensaje codificado.
+     * @return dato tipo String que es el nombre del metodo.
+     */
+    private String getSerchMetodo(int pMetodo){
+        if(pMetodo==binariS)
+            return "busqueda binaria";
+        else if(pMetodo==lineal)
+            return "busqueda lineal";
+        else if(pMetodo==AVL)
+            return "buscar AVL";
+        else if(pMetodo==BinarioT)
+            return "buscar binario";
+        else if(pMetodo==Splay)
+            return "buscar splay";
+        else if(pMetodo==R_N)
+            return "buscar R&N";
+        else
+            return "buscar lista";
+    }
+    
+    /**
+     * metodo que decodifica lo que reciba del mensaje y lo envia diciendo cual
+     * es el metodo que se quiso calcular para un ordenamiento.
+     * @param pMetodo dato tipo entero, que es el mensaje codificado.
+     * @return dato tipo String que es el nombre del metodo.
+     */
+    private String getSortMetodo(int pMetodo){
+        if(pMetodo==burbujaS)
+            return "orde. burbuja";
+        else if(pMetodo==insertS)
+            return "orde. insert";
+        else if(pMetodo==selecS)
+            return "orde. selection";
+        else if(pMetodo==mergeS)
+            return "orde. merge";
+        else if(pMetodo==quickS)
+            return "orde. quick";
+        else
+            return "orde. raddix";
+    }
+    
+    /**
+     * metodo que ejecuta el establecimiento de lineas en la grafica, segun los
+     * datos que este recibiendo.
+     * @param pDataset dato de la biblioteca DefaultCategoryDataset, esta es la 
+     * grafica en donde se van a poner las lineas.
+     * @param pMetodo dato tipo String, es el nombre del metodo que calculamos
+     * @param pLenghtDatos dato tipo entero, es el dato que nos indica la maxima
+     * cantidad de datos que estamos usando.
+     * @param pBetter dato de la clase Nodo, este el nodo que contiene el dato 
+     * del mejor rendimiento de tiempo.
+     * @param pNorm dato de la clase Nodo, este es el nodo que contiene el dato
+     * del rendimiento medio.
+     * @param pWorst dato de la clase Nodo, este es el nodo que contiene el dato
+     * del peor rendimiento, encomparacion a los demas tiempos.
+     */
+    private void setLines(DefaultCategoryDataset pDataset,String pMetodo, 
+             int pLenghtDatos,Nodo pBetter, Nodo pNorm, Nodo pWorst){
+        pDataset.addValue((long)pBetter.getData(), "Mejor caso de: "+pMetodo,
+                "" + pLenghtDatos);
+        pDataset.addValue((long)pWorst.getData(), "Peor caso de: "+pMetodo,
+                "" + pLenghtDatos);
+        pDataset.addValue((long)pNorm.getData(), "Caso promedio de: "+pMetodo,
+                "" + pLenghtDatos);
     }
 }
  

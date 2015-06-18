@@ -9,7 +9,9 @@ import calculos.Constantes;
 import lists.ListaSdoble;
 
 /**
- *
+ * clase que es un jframe, esta clase sirve para abrir la ventana que va 
+ * dejarnos decidir que tipos de metodos de ordenamiento podemos hacer para los 
+ * metodos de ordenamiento.
  * @author osboxes
  */
 public class Ordenamientos extends javax.swing.JFrame implements Constantes{
@@ -22,6 +24,7 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
      * Creates new form sorts
      */
     public Ordenamientos(){
+        _metodos=new ListaSdoble();
         initComponents();
     }
 
@@ -98,6 +101,12 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * metodo que detecta las acciones realizadas por el comboBox cuando 
+     * seleccionamos un metodo de ordenamiento; segun lo que hayamos elejido lo 
+     * ingresa a una lista, que almacenara los metodos que vamos a realizar.
+     * @param evt 
+     */
     private void SortBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortBoxActionPerformed
         // TODO add your handling code here:
         if(SortBox.getSelectedIndex()==cero)
@@ -112,15 +121,29 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
             _metodos.enQueue((_metodo*diez)+R_N);
     }//GEN-LAST:event_SortBoxActionPerformed
 
+    /**
+     * metodo que detecta cuando el boton de calcular se es presionado, 
+     * inicializa la clase que nos crea la grafica y cierra esa JFrame.
+     * @param evt 
+     */
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
         // TODO add your handling code here:
         Grafico _chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_CalcActionPerformed
 
+    /**
+     * metodo que recibe un mensaje y es el que establece antes para que este 
+     * el tipo de metodo que vamos a calcular; si recibe un uno, se calcula una
+     * insercion, un dos es para borrado, 3 es para busqueda y 4 para 
+     * ordenamiento.
+     * @param mensaje dato tipo entero, recibe el dato segun el tipo de 
+     * operacion que se quiera realizar.
+     */
     public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
+    
     /**
      * @param args the command line arguments
      */

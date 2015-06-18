@@ -6,8 +6,11 @@
 package graficacion;
 
 import calculos.Constantes;
+
 /**
- *
+ * clase que es un jframe, esta clase sirve para abrir la ventana que va 
+ * dejarnos decidir que tipos de metodos podemos hacer para proceder a los
+ * metodos con que se pueda aplicar la operacion que queremos.
  * @author osboxes
  */
 public class main extends javax.swing.JFrame implements Constantes{
@@ -102,6 +105,12 @@ public class main extends javax.swing.JFrame implements Constantes{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * metodo que detecta cuando el boton de Sort se es presionado, 
+     * inicializa la clase que nos permitira escojer los metodos con que podemos
+     * aplicar ordenamientos.
+     * @param evt 
+     */
     private void sortBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortBtnActionPerformed
         // TODO add your handling code here:
         _metodo=sort;
@@ -111,6 +120,12 @@ public class main extends javax.swing.JFrame implements Constantes{
         dispose();
     }//GEN-LAST:event_sortBtnActionPerformed
 
+    /**
+     * metodo que detecta cuando el boton de Search o busqueda se es presionado, 
+     * inicializa la clase que nos permitira escojer los metodos con que podemos
+     * aplicar ordenamientos.
+     * @param evt 
+     */
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         _metodo=search;
@@ -120,6 +135,12 @@ public class main extends javax.swing.JFrame implements Constantes{
         dispose();
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    /**
+     * metodo que detecta cuando el boton de Delete o borrado se es presionado, 
+     * inicializa la clase que nos permitira escojer los metodos con que podemos
+     * aplicar ordenamientos.
+     * @param evt 
+     */
     private void DelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelBtnActionPerformed
         // TODO add your handling code here:
         _metodo=delete;
@@ -129,6 +150,12 @@ public class main extends javax.swing.JFrame implements Constantes{
         dispose();
     }//GEN-LAST:event_DelBtnActionPerformed
 
+    /**
+     * metodo que detecta cuando el boton de insert o insertar se es presionado, 
+     * inicializa la clase que nos permitira escojer los metodos con que podemos
+     * aplicar ordenamientos.
+     * @param evt 
+     */
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
         // TODO add your handling code here:
         _metodo=insert;
