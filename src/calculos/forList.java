@@ -37,11 +37,11 @@ public class forList <dp extends Comparable<dp>> implements Constantes{
         this._bitDiference=bitDiference;
         this._lenght=pCantidadMaxima;
         if(bitDiference==0)
-            better(pCantidadMaxima);
+            better(_lenght);
         else if (bitDiference==1)
-            normal(pCantidadMaxima);
+            normal(_lenght);
         else
-            worst(pCantidadMaxima);
+            worst(_lenght);
     }
     
     /**
@@ -71,9 +71,10 @@ public class forList <dp extends Comparable<dp>> implements Constantes{
      * @return retorna un dato de valor generico.
      */
     public dp getfind(){
+        _array.sort(null);
         if(_bitDiference==cero)
             return (dp)_array.get(cero);
-        else if(_bitDiference==1)
+        else if(_bitDiference==uno)
             return (dp)_array.get((_lenght-1)/2);
         return (dp)_array.get(_lenght-1);
     }
@@ -96,7 +97,7 @@ public class forList <dp extends Comparable<dp>> implements Constantes{
      */
     private void normal(int pCantMax){
         for (int i=0; i<pCantMax; i++){
-            _array.add(_rnd.nextInt(pCantMax/50)+1);
+            _array.add(_rnd.nextInt(pCantMax/10)+1);
         }
     }
     

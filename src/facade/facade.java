@@ -7,7 +7,7 @@ package facade;
 
 import calculos.Decode;
 import calculos.Constantes;
-import lists.ListaSdoble;
+import lists.ListaSimple;
 import lists.Nodo;
 /**
  * clase facade que comunica las clases que realizan los calculos con la clase 
@@ -19,25 +19,16 @@ public class facade implements Constantes{
     private Decode _betterCien;
     private Decode _normalCien;
     private Decode _worstCien;
-    private ListaSdoble _mensajes;
-    private ListaSdoble _better;
-    private ListaSdoble _normal;
-    private ListaSdoble _worst;
+    private ListaSimple _mensajes;
+    private ListaSimple _better;
+    private ListaSimple _normal;
+    private ListaSimple _worst;
     
     public facade(){
-        _mensajes= new ListaSdoble();
-        _better= new ListaSdoble();
-        _normal= new ListaSdoble();
-        _worst= new ListaSdoble();
-    }
-    
-    /**
-     * funcion para establecer los mensajes con los que se va a estar trabajando
-     * @param mensajes recibe un dato de la clase ListaSdoble, esta es la lista
-     * que contiene todos los mensajes de las operaciones que vamos a realizar.
-     */
-    public void setMensaje(ListaSdoble mensajes){
-        this._mensajes=mensajes;
+        _mensajes= new ListaSimple();
+        _better= new ListaSimple();
+        _normal= new ListaSimple();
+        _worst= new ListaSimple();
     }
     
     /**
@@ -47,7 +38,8 @@ public class facade implements Constantes{
     public void run(){
         Nodo tmp = _mensajes.getHead();
         while(tmp!=null){
-            for(int cantDatos=100;cantDatos<Mil+uno;cantDatos+=cien){
+            int cantDatos=0;
+            for(;cantDatos<Mil+uno;cantDatos+=cien){
                 _betterCien=new Decode(cantDatos, cero);
                 _normalCien= new Decode(cantDatos, uno);
                 _worstCien= new Decode(cantDatos, dos);
@@ -55,7 +47,7 @@ public class facade implements Constantes{
                 _normal.enQueue(_normalCien.Time((int)tmp.getData()));
                 _worst.enQueue(_worstCien.Time((int)tmp.getData()));
             }
-            for(int cantDatos=2000;cantDatos<cienMil+uno;cantDatos+=Mil){
+            for(;cantDatos<cienMil+uno;cantDatos+=Mil){
                 _betterCien=new Decode(cantDatos, cero);
                 _normalCien= new Decode(cantDatos, uno);
                 _worstCien= new Decode(cantDatos, dos);
@@ -68,12 +60,12 @@ public class facade implements Constantes{
     }
     
     /**
-     * metodo para obtener los mensajes con los que se estan operando.
-     * @return retorna un dato de la clase 'ListaSdoble', esta lista contiene
-     * todos los metodos con los que se esta operando.
+     * funcion para establecer los mensajes con los que se va a estar trabajando
+     * @param mensajes recibe un dato de la clase ListaSdoble, esta es la lista
+     * que contiene todos los mensajes de las operaciones que vamos a realizar.
      */
-    public ListaSdoble getMensajes(){
-        return _mensajes;
+    public void setMensaje(ListaSimple mensajes){
+        this._mensajes=mensajes;
     }
     
     /**
@@ -81,7 +73,7 @@ public class facade implements Constantes{
      * @return retorna un dato de la clase 'ListaSdoble', contiene los datos de
      * que segun, los metodos, tubieron mejor rendimiento.
      */
-    public ListaSdoble getBetter(){
+    public ListaSimple getBetter(){
         return _better;
     }
     
@@ -90,7 +82,7 @@ public class facade implements Constantes{
      * @return retorna un dato de la clase 'ListaSdoble', contiene los datos de
      * que segun, los metodos, tubieron un rendimiento medio.
      */
-    public ListaSdoble getNormal(){
+    public ListaSimple getNormal(){
         return _normal;
     }
     
@@ -99,7 +91,7 @@ public class facade implements Constantes{
      * @return retorna un dato de la clase 'ListaSdoble', contiene los datos de
      * que segun, los metodos, tubieron el peor rendimiento.
      */
-    public ListaSdoble getWorst(){
+    public ListaSimple getWorst(){
         return _worst;
     }
 }

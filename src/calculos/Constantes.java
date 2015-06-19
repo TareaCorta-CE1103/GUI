@@ -11,10 +11,14 @@ package calculos;
  * @author osboxes
  */
 public interface Constantes {
+    //bloque de contantes para operaciones.
     public static final int insert=1;
     public static final int delete=2;
     public static final int search=3;
     public static final int sort=4;
+    //
+    
+    //bloque de constantes para metodos.
     public static final int AVL=1;
     public static final int BinarioT=2;
     public static final int Splay=3;
@@ -28,12 +32,16 @@ public interface Constantes {
     public static final int mergeS=4;
     public static final int raddixS=5;
     public static final int selecS=6;
-    public static final int forTrees=1;
-    public static final int forList=2;
-    public static final int forArrays=3;
+    public static final int heapS=7;
+    //
+    
+    //bloque de constantes para casos de rendimiento para los metodos.
     public static final int better=1;
     public static final int normal=2;
     public static final int worst=3;
+    //
+    
+    //bloque de constantes para numeros de propositos generales.
     public static final int cero=0;
     public static final int uno=1;
     public static final int dos=2;
@@ -45,7 +53,12 @@ public interface Constantes {
     public static final int ocho=8;
     public static final int nueve=9;
     public static final int diez=10;
+    //
+    
+    // bloque para constantes para cantidad de datos utilizadas en el 
+    //proyecto
     public static final int cien=100;
     public static final int Mil=1000;
     public static final int cienMil=10000;
+    //
 }

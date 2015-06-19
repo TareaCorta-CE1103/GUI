@@ -43,7 +43,8 @@ public class CalcTime implements Constantes{
      * segun la cantidad de datos, puede realizar borrados, inserciones y 
      * busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'uno' para insercion, un 'dos' para borrado y un 
+     * 'tres' para busqueda.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -62,10 +63,10 @@ public class CalcTime implements Constantes{
             return tmp2-tmp;
         }
         for(int i=0;i<_Dato.largo();i++){
-            _AVL.insert(_Dato.getDato(i));
+            _AVL.insert((int)_Dato.getDato(i));
         }
         if(pInstruccion==delete){
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo()-1);i++){
                 int dato= (int)_Dato.getAVL(_AVL);
                 tmp=System.nanoTime();
                 _AVL.delete(dato);
@@ -73,7 +74,7 @@ public class CalcTime implements Constantes{
             }
         }
         else{
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato= (int)_Dato.getAVL(_AVL);
                 tmp=System.nanoTime();
                 _AVL.search(dato);
@@ -88,7 +89,8 @@ public class CalcTime implements Constantes{
      * segun la cantidad de datos, puede realizar borrados, inserciones y 
      * busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'uno' para insercion, un 'dos' para borrado y un 
+     * 'tres' para busqueda.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -110,7 +112,7 @@ public class CalcTime implements Constantes{
             _binario.insert(_Dato.getDato(i));
         }
         if(pInstruccion==delete){
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato= (int)_Dato.getBi(_binario);
                 tmp=System.nanoTime();
                 _binario.delete(dato);
@@ -118,7 +120,7 @@ public class CalcTime implements Constantes{
             }
         }
         else{
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato= (int)_Dato.getBi(_binario);
                 tmp=System.nanoTime();
                 _binario.find(dato);
@@ -133,7 +135,8 @@ public class CalcTime implements Constantes{
      * negro segun la cantidad de datos, puede realizar borrados, inserciones y 
      * busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'uno' para insercion, un 'dos' para borrado y un 
+     * 'tres' para busqueda.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -163,7 +166,7 @@ public class CalcTime implements Constantes{
             }
         }
         else{
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato= (int)_Dato.getRN(_RN);
                 tmp=System.nanoTime();
                 _RN.search(dato);
@@ -178,7 +181,8 @@ public class CalcTime implements Constantes{
      * segun la cantidad de datos, puede realizar borrados, inserciones y 
      * busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'uno' para insercion, un 'dos' para borrado y un 
+     * 'tres' para busqueda.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -223,7 +227,8 @@ public class CalcTime implements Constantes{
      * segun la cantidad de datos, puede realizar borrados, inserciones y 
      * busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'uno' para insercion, un 'dos' para borrado y un 
+     * 'tres' para busqueda.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -236,18 +241,16 @@ public class CalcTime implements Constantes{
             for(int i=0;i<_Dato.largo();i++){
                 int dato= (int)_Dato.getDato(i);
                 tmp=System.nanoTime();
-                _LD.enQueue(dato);
-                _LD.insertSort();
+                _LD.insert(dato);
                 tmp2=System.nanoTime();
             }
             return tmp2-tmp;
         }
         for(int i=0;i<_Dato.largo();i++){
-            _LD.enQueue(_Dato.getDato(i));
+            _LD.insert(_Dato.getDato(i));
         }
-        _LD.insertSort();
         if(pInstruccion==delete){
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato= (int)_Dato.getfind();
                 tmp=System.nanoTime();
                 _LD.deQueue(dato);
@@ -255,7 +258,7 @@ public class CalcTime implements Constantes{
             }
         }
         else{
-            for(int i=0; i<(_Dato.largo()/50);i++){
+            for(int i=0; i<(_Dato.largo());i++){
                 int dato=(int)_Dato.getfind();
                 tmp=System.nanoTime();
                 _LD.find(dato);
@@ -270,7 +273,7 @@ public class CalcTime implements Constantes{
      * busquedas aplicados en un arreglo segun la cantidad de datos, puede 
      * realizar borrados, inserciones y busquedas.
      * @param pInstruccion recibe un dato tipo entero que concuerda con la 
-     * operacion pedida.
+     * operacion pedida, un 'seis' para binaria o un 'siete' para un lineal.
      * @return retorna un dato tipo 'long' que es la cantidad de tiempo tardado 
      * en nanosegundos por el programa.
      */
@@ -281,7 +284,7 @@ public class CalcTime implements Constantes{
         if(pInstruccion==binariS){
             binari buscar= new binari();
             for(int i=0; i<(datos.length);i++){
-                int dato=_Datos.getDato();
+                int dato=_Datos.binari();
                 tmp=System.nanoTime();
                 buscar.binari(datos,dato);
                 tmp2=System.nanoTime();
@@ -290,7 +293,7 @@ public class CalcTime implements Constantes{
         }
         lineal buscar = new lineal();
         for(int i=0; i<(datos.length);i++){
-            int dato=_Datos.getDato();
+            int dato=_Datos.lineal();
             tmp=System.nanoTime();
             buscar.lineal(datos,dato);
             tmp2=System.nanoTime();
@@ -298,7 +301,32 @@ public class CalcTime implements Constantes{
         return tmp2-tmp;
     }
     
+    /**
+     * casos de prueba, para el segundo espacio en la instancia de la 
+     * clase CalcTime no poner un cero y descomentar alguno de los 
+     * tiempos para arboles que digan que no funcionan para el mejor de los casos
+     * por que se cae.
     public static void main(String[] args) {
-        //CalcTime nuevo = new CalcTime(arreglo);
-    }
+        long tmp=0;
+        for(int i =0;i<1001;i+=100){
+            CalcTime nuevo = new CalcTime(i,2);
+            //tmp=nuevo.listaSDoble(1);
+            //tmp=nuevo.listaSDoble(2);
+            //tmp=nuevo.listaSDoble(3);
+            //tmp=nuevo.AVL(1);
+            //tmp=nuevo.AVL(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.AVL(3);
+            //tmp=nuevo.splay(1);
+            //tmp=nuevo.splay(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.splay(3);
+            //tmp=nuevo.binario(1);
+            //tmp=nuevo.binario(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.binario(3);
+            //tmp=nuevo.RN(1);
+            //tmp=nuevo.RN(3);
+            //tmp=nuevo.search(6);
+            //tmp=nuevo.search(7);
+            System.out.println(tmp);
+        }
+    }*/
 }

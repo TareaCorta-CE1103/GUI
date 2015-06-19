@@ -42,11 +42,11 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
         this._bitDiference=bitDiference;
         this._lenght=pCantidadMaxima;
         if(bitDiference==cero)
-            better(pCantidadMaxima);
+            better(_lenght);
         else if (bitDiference==uno)
-            normal(pCantidadMaxima);
+            normal(_lenght);
         else
-            worst(pCantidadMaxima);
+            worst(_lenght);
     }
     
     /**
@@ -77,11 +77,11 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
      */
     public dp getAVL(Arbol_AVL avl){
         if(_bitDiference==cero)
-            return (dp)avl.getRoot().getDato();
+            return (dp)avl.getRaiz().getDato();
         else if(_bitDiference==uno)
-            return (dp)_array.get(_rnd.nextInt(_lenght)+1);
+            return (dp)_array.get((_lenght-1)/2);
         else
-            return (dp)_array.get(cero);
+            return (dp)_array.get(_lenght-1);
     }
     
     /**
@@ -95,9 +95,9 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
         if(_bitDiference==cero)
             return (dp)abb.getRoot().getDato();
         else if(_bitDiference==uno)
-            return (dp)_array.get(_rnd.nextInt(_lenght)+1);
+            return (dp)_array.get((_lenght-1)/2);
         else
-            return (dp)_array.get(cero);
+            return (dp)_array.get(_lenght-1);
     }
     
     /**
@@ -109,11 +109,11 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
      */
     public dp getSp(Arbol_splay asp){
         if(_bitDiference==cero)
-            return (dp)asp.getRoot().getDato();
-        else if(_bitDiference==uno)
-            return (dp)_array.get(_rnd.nextInt(_lenght)+1);
-        else
             return (dp)_array.get(cero);
+        else if(_bitDiference==uno)
+            return (dp)_array.get((_lenght-1)/2);
+        else
+            return (dp)asp.getRoot().getDato();
     }
     
     /**
@@ -127,7 +127,7 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
         if(_bitDiference==cero)
             return (dp)arn.getRoot().getDato();
         else if(_bitDiference==uno)
-            return (dp)_array.get(_rnd.nextInt(_lenght)+1);
+            return (dp)_array.get((_lenght-1)/2);
         else
             return (dp)_array.get(cero);
     }
@@ -139,7 +139,7 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
      */
     private void better(int pCantMax){
         for (int i=0; i<pCantMax; i++){
-            _array.add(_rnd.nextInt(pCantMax/50)+1);
+            _array.add(_rnd.nextInt(pCantMax/30)+1);
         }
     }
     
@@ -150,7 +150,7 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
      */
     private void normal(int pCantMax){
         for (int i=0; i<pCantMax; i++){
-            _array.add(_rnd.nextInt(pCantMax/50)+1);
+            _array.add(_rnd.nextInt(pCantMax/10)+1);
         }
     }
     

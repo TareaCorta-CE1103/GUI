@@ -6,7 +6,7 @@
 package graficacion;
 
 import calculos.Constantes;
-import lists.ListaSdoble;
+import lists.ListaSimple;
 
 /**
  * clase que es un jframe, esta clase sirve para abrir la ventana que va 
@@ -18,12 +18,12 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
 
     private int _metodo;
     private Grafico chartab;
-    private ListaSdoble _metodos;
+    private ListaSimple _metodos;
     /**
      * Creates new form inserciones
      */
     public inserciones() {
-        _metodos= new ListaSdoble();
+        _metodos= new ListaSimple();
         initComponents();
     }
 

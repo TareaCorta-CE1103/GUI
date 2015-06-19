@@ -9,6 +9,7 @@ import facade.facade;
 import lists.ListaSdoble;
 import lists.Nodo;
 import calculos.Constantes;
+import lists.ListaSimple;
 
 /**
  * clase que se utiliza para graficar los datos que se obtienen apartir del 
@@ -18,10 +19,10 @@ import calculos.Constantes;
 public class Grafico implements Constantes{
     
     private facade _facade;
-    private ListaSdoble _mensajes;
-    private ListaSdoble _better;
-    private ListaSdoble _normal;
-    private ListaSdoble _worst;
+    private ListaSimple _mensajes;
+    private ListaSimple _better;
+    private ListaSimple _normal;
+    private ListaSimple _worst;
     
     /**
      * contructor de la clase, recibe una lista enlazada que es la que contiene
@@ -31,32 +32,48 @@ public class Grafico implements Constantes{
      * es el que contiene los mensajes que vamos a usar para realizar los 
      * calculos.
      */
-    public Grafico(ListaSdoble pMensaje) {
+    public Grafico(ListaSimple pMensaje) {
+        this._mensajes=pMensaje;
         _facade=new facade();
+        
+        //establecemos los mensajes de los metodos que queremos ejecutar.
+        _facade.setMensaje(_mensajes);
+        
+        //ejecutamos los metodos y el facade realiza solo los calculos.
         _facade.run();
+        
+        //obtenemos las listas de los tiempos.
         _normal=_facade.getNormal();
         _better=_facade.getBetter();
         _worst=_facade.getWorst();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        //obtenemos los nodos que conectados a las listas de mensajes y tiempos.
         Nodo tmp=_mensajes.getHead();
         Nodo mejor= _better.getHead();
         Nodo normal=_normal.getHead();
         Nodo peor=_worst.getHead();
         while(tmp!=null){
-            int lenght=cien;
-            for (int cantDatos = 0; cantDatos<(dos*diez)+1;cantDatos++){
+            int lenght=0;
+            for (int cantDatos = 0; cantDatos<(dos*diez);cantDatos++){
+                
+                //llamda a metodo que establece las lineas
                 setLines(dataset,getMetodo((int)tmp.getData()), lenght,
                         mejor, normal, peor);
                 mejor=mejor.getNext();
                 normal=normal.getNext();
                 peor=peor.getNext();
-                if(lenght<(Mil+uno))
+                //sumatoria del contador que va a llevar la cantidad de datos
+                //que hemos ingresado para realizar el benchmark.
+                if(lenght<Mil)
                     lenght+=cien;
-                else if(lenght>=Mil &&lenght<cienMil+1)
+                else if(lenght==Mil)
+                    lenght+=Mil;
+                else if(lenght>Mil &&lenght<cienMil+1)
                     lenght+=Mil;
             }
             tmp=tmp.getNext();
         }
+        //establecimiento de atributos a la grafica.
         JFreeChart Grafico = ChartFactory.createLineChart(
                 "Eficiencia del algoritmo",
                 "Cantidad de elementos",
@@ -154,17 +171,19 @@ public class Grafico implements Constantes{
      */
     private String getSortMetodo(int pMetodo){
         if(pMetodo==burbujaS)
-            return "orde. burbuja";
+            return "Burbuja";
         else if(pMetodo==insertS)
-            return "orde. insert";
+            return "Insert";
         else if(pMetodo==selecS)
-            return "orde. selection";
+            return "Selection";
         else if(pMetodo==mergeS)
-            return "orde. merge";
+            return "Merge";
         else if(pMetodo==quickS)
-            return "orde. quick";
-        else
-            return "orde. raddix";
+            return "Quick";
+        else if(pMetodo==quickS)
+            return "Raddix";
+        else 
+            return "Heap";
     }
     
     /**
@@ -190,6 +209,13 @@ public class Grafico implements Constantes{
                 "" + pLenghtDatos);
         pDataset.addValue((long)pNorm.getData(), "Caso promedio de: "+pMetodo,
                 "" + pLenghtDatos);
+    }
+    
+    public static void main(String[] args) {
+        ListaSimple lista= new ListaSimple();
+        //lista.enQueue(32);
+        lista.enQueue(33);
+        Grafico nuevo= new Grafico(lista);
     }
 }
  
