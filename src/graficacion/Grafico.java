@@ -211,12 +211,16 @@ public class Grafico implements Constantes{
                 "" + pLenghtDatos);
     }
     
+    /**casos de prueba,ordenamientos, inserciones y busquedas quedan listas
+     * pero los borrados de los arboles siguen si funcionar, no se porque, 
+     * quisiera saberlo, ya quiero que termine el semestre :'''(
+     *
     public static void main(String[] args) {
         ListaSimple lista= new ListaSimple();
         //lista.enQueue(32);
         lista.enQueue(33);
         Grafico nuevo= new Grafico(lista);
-    }
+    }*/
 }
  
 

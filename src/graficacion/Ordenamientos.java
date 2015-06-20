@@ -39,9 +39,9 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
 
         jLabel1 = new javax.swing.JLabel();
         SortBox = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         Calc = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MethArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(550, 410));
@@ -55,12 +55,6 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Metodos a calcular:\n");
-        jScrollPane1.setViewportView(jTextArea1);
-
         Calc.setText("Calcular");
         Calc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,20 +62,28 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
             }
         });
 
+        MethArea.setEditable(false);
+        MethArea.setColumns(20);
+        MethArea.setRows(5);
+        MethArea.setText("Metodos a calcular:\n");
+        jScrollPane2.setViewportView(MethArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(SortBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(148, 148, 148)
-                        .addComponent(Calc))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(SortBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(148, 148, 148)
+                            .addComponent(Calc))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(260, 260, 260))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,9 +95,9 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SortBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Calc))
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,16 +111,34 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
      */
     private void SortBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortBoxActionPerformed
         // TODO add your handling code here:
-        if(SortBox.getSelectedIndex()==cero)
-            _metodos.enQueue((_metodo*diez)+Ldoble);
-        else if(SortBox.getSelectedIndex()==uno)
-            _metodos.enQueue((_metodo*diez)+BinarioT);
-        else if(SortBox.getSelectedIndex()==dos)
-            _metodos.enQueue((_metodo*diez)+AVL);
-        else if(SortBox.getSelectedIndex()==tres)
-            _metodos.enQueue((_metodo*diez)+Splay);
-        else if(SortBox.getSelectedIndex()==cuatro)
-            _metodos.enQueue((_metodo*diez)+R_N);
+        if(SortBox.getSelectedIndex()==cero){
+            _metodos.enQueue_none_repeat((_metodo*diez)+burbujaS);
+            setMetodo(burbujaS);
+        }
+        else if(SortBox.getSelectedIndex()==uno){
+            _metodos.enQueue_none_repeat((_metodo*diez)+selecS);
+            setMetodo(selecS);
+        }
+        else if(SortBox.getSelectedIndex()==dos){
+            _metodos.enQueue_none_repeat((_metodo*diez)+insertS);
+            setMetodo(insertS);
+        }
+        else if(SortBox.getSelectedIndex()==tres){
+            _metodos.enQueue_none_repeat((_metodo*diez)+mergeS);
+            setMetodo(mergeS);
+        }
+        else if(SortBox.getSelectedIndex()==cuatro){
+            _metodos.enQueue_none_repeat((_metodo*diez)+quickS);
+            setMetodo(quickS);
+        }
+        else if(SortBox.getSelectedIndex()==cinco){
+            _metodos.enQueue_none_repeat((_metodo*diez)+heapS);
+            setMetodo(heapS);
+        }
+        else if(SortBox.getSelectedIndex()==seis){
+            _metodos.enQueue_none_repeat((_metodo*diez)+raddixS);
+            setMetodo(raddixS);
+        }
     }//GEN-LAST:event_SortBoxActionPerformed
 
     /**
@@ -128,7 +148,7 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
      */
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
         // TODO add your handling code here:
-        Grafico _chartab=new Grafico(_metodos);
+        chartab=new Grafico(_metodos);
         dispose();
     }//GEN-LAST:event_CalcActionPerformed
 
@@ -142,6 +162,28 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
      */
     public void setMensaje(int mensaje){
         this._metodo=mensaje;
+    }
+    
+    /**
+     * metodo para agregar datos de texto para saber que metodos vamos a calcular
+     * cuando queramos hacer una comparacion de duracion en tiempo.
+     * @param mensaje dato tipo entero, este es el metodo que se pide.
+     */
+    private void setMetodo(int mensaje){
+        if(mensaje==burbujaS)
+            MethArea.append('\n'+ "Bubble");
+        else if(mensaje==selecS)
+            MethArea.append('\n'+ "Selection");
+        else if(mensaje==insertS)
+            MethArea.append('\n'+ "Insert");
+        else if(mensaje==mergeS)
+            MethArea.append('\n'+ "Merge");
+        else if(mensaje==quickS)
+            MethArea.append('\n'+ "Quick");
+        else if(mensaje==heapS)
+            MethArea.append('\n'+ "Heap");
+        else 
+            MethArea.append('\n'+ "raddix");
     }
     
     /**
@@ -182,9 +224,9 @@ public class Ordenamientos extends javax.swing.JFrame implements Constantes{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calc;
+    private javax.swing.JTextArea MethArea;
     public static javax.swing.JComboBox SortBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

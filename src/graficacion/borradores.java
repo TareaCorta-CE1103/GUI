@@ -38,9 +38,9 @@ public class borradores extends javax.swing.JFrame implements Constantes{
 
         jLabel3 = new javax.swing.JLabel();
         DeleteBox = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         Calc = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MethArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(530, 400));
@@ -54,18 +54,18 @@ public class borradores extends javax.swing.JFrame implements Constantes{
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Metodos a calcular:\n");
-        jScrollPane1.setViewportView(jTextArea1);
-
         Calc.setText("Calcular");
         Calc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CalcActionPerformed(evt);
             }
         });
+
+        MethArea.setEditable(false);
+        MethArea.setColumns(20);
+        MethArea.setRows(5);
+        MethArea.setText("Metodos a calcular:\n");
+        jScrollPane2.setViewportView(MethArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,13 +74,12 @@ public class borradores extends javax.swing.JFrame implements Constantes{
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(DeleteBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Calc))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DeleteBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(Calc)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +91,9 @@ public class borradores extends javax.swing.JFrame implements Constantes{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Calc))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,16 +118,26 @@ public class borradores extends javax.swing.JFrame implements Constantes{
      */
     private void DeleteBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBoxActionPerformed
         // TODO add your handling code here:
-        if(DeleteBox.getSelectedIndex()==cero)
-            _metodos.enQueue((_metodo*diez)+Ldoble);
-        else if(DeleteBox.getSelectedIndex()==uno)
-            _metodos.enQueue((_metodo*diez)+BinarioT);
-        else if(DeleteBox.getSelectedIndex()==dos)
-            _metodos.enQueue((_metodo*diez)+AVL);
-        else if(DeleteBox.getSelectedIndex()==tres)
-            _metodos.enQueue((_metodo*diez)+Splay);
-        else if(DeleteBox.getSelectedIndex()==cuatro)
-            _metodos.enQueue((_metodo*diez)+R_N);
+        if(DeleteBox.getSelectedIndex()==cero){
+            _metodos.enQueue_none_repeat((_metodo*diez)+Ldoble);
+            setMetodo(Ldoble);
+        }
+        else if(DeleteBox.getSelectedIndex()==uno){
+            _metodos.enQueue_none_repeat((_metodo*diez)+BinarioT);
+            setMetodo(BinarioT);
+        }
+        else if(DeleteBox.getSelectedIndex()==dos){
+            _metodos.enQueue_none_repeat((_metodo*diez)+AVL);
+            setMetodo(AVL);
+        }
+        else if(DeleteBox.getSelectedIndex()==tres){
+            _metodos.enQueue_none_repeat((_metodo*diez)+Splay);
+            setMetodo(Splay);
+        }
+        else if(DeleteBox.getSelectedIndex()==cuatro){
+            _metodos.enQueue_none_repeat((_metodo*diez)+R_N);
+            setMetodo(R_N);
+        }
     }//GEN-LAST:event_DeleteBoxActionPerformed
 
     /**
@@ -142,6 +151,25 @@ public class borradores extends javax.swing.JFrame implements Constantes{
     public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
+    
+    /**
+     * metodo para agregar datos de texto para saber que metodos vamos a calcular
+     * cuando queramos hacer una comparacion de duracion en tiempo.
+     * @param mensaje dato tipo entero, este es el metodo que se pide.
+     */
+    private void setMetodo(int mensaje){
+        if(mensaje==Ldoble)
+            MethArea.append('\n'+ "Lista enlazada");
+        else if(mensaje==BinarioT)
+            MethArea.append('\n'+ "Arbol binario");
+        else if(mensaje==AVL)
+            MethArea.append('\n'+ "Arbol AVL");
+        else if(mensaje==Splay)
+            MethArea.append('\n'+ "Arbol Splay");
+        else 
+            MethArea.append('\n'+ "Arbol Rojo y Negro");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -180,8 +208,8 @@ public class borradores extends javax.swing.JFrame implements Constantes{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calc;
     private javax.swing.JComboBox DeleteBox;
+    private javax.swing.JTextArea MethArea;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

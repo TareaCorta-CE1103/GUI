@@ -39,9 +39,9 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
         Calc = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         InsertBox = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         Calc1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MethArea = new javax.swing.JTextArea();
 
         Calc.setText("Calcular");
 
@@ -57,12 +57,6 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Metodos a calcular:\n");
-        jScrollPane1.setViewportView(jTextArea1);
-
         Calc1.setText("Calcular");
         Calc1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,20 +64,25 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
             }
         });
 
+        MethArea.setEditable(false);
+        MethArea.setColumns(20);
+        MethArea.setRows(5);
+        MethArea.setText("Metodos a calcular:\n");
+        jScrollPane2.setViewportView(MethArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(InsertBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(88, 88, 88)
-                            .addComponent(Calc1))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(InsertBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(Calc1)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,9 +94,9 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InsertBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Calc1))
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,16 +121,26 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
      */
     private void InsertBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertBoxActionPerformed
         // TODO add your handling code here:
-        if(InsertBox.getSelectedIndex()==cero)
-            _metodos.enQueue((_metodo*diez)+Ldoble);
-        else if(InsertBox.getSelectedIndex()==uno)
-            _metodos.enQueue((_metodo*diez)+BinarioT);
-        else if(InsertBox.getSelectedIndex()==dos)
-            _metodos.enQueue((_metodo*diez)+AVL);
-        else if(InsertBox.getSelectedIndex()==tres)
-            _metodos.enQueue((_metodo*diez)+Splay);
-        else if(InsertBox.getSelectedIndex()==cuatro)
-            _metodos.enQueue((_metodo*diez)+R_N);
+        if(InsertBox.getSelectedIndex()==cero){
+            _metodos.enQueue_none_repeat((_metodo*diez)+Ldoble);
+            setMetodo(Ldoble);
+        }
+        else if(InsertBox.getSelectedIndex()==uno){
+            _metodos.enQueue_none_repeat((_metodo*diez)+BinarioT);
+            setMetodo(BinarioT);
+        }
+        else if(InsertBox.getSelectedIndex()==dos){
+            _metodos.enQueue_none_repeat((_metodo*diez)+AVL);
+            setMetodo(AVL);
+        }
+        else if(InsertBox.getSelectedIndex()==tres){
+            _metodos.enQueue_none_repeat((_metodo*diez)+Splay);
+            setMetodo(Splay);
+        }
+        else if(InsertBox.getSelectedIndex()==cuatro){
+            _metodos.enQueue_none_repeat((_metodo*diez)+R_N);
+            setMetodo(R_N);
+        }
     }//GEN-LAST:event_InsertBoxActionPerformed
 
     /**
@@ -145,6 +154,25 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
     public void setMensaje(int mensaje){
         this._metodo=mensaje;
     }
+    
+    /**
+     * metodo para agregar datos de texto para saber que metodos vamos a calcular
+     * cuando queramos hacer una comparacion de duracion en tiempo.
+     * @param mensaje dato tipo entero, este es el metodo que se pide.
+     */
+    private void setMetodo(int mensaje){
+        if(mensaje==Ldoble)
+            MethArea.append('\n'+ "Lista enlazada");
+        else if(mensaje==BinarioT)
+            MethArea.append('\n'+ "Arbol binario");
+        else if(mensaje==AVL)
+            MethArea.append('\n'+ "Arbol AVL");
+        else if(mensaje==Splay)
+            MethArea.append('\n'+ "Arbol Splay");
+        else 
+            MethArea.append('\n'+ "Arbol Rojo y Negro");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -184,8 +212,8 @@ public class inserciones extends javax.swing.JFrame implements Constantes{
     private javax.swing.JButton Calc;
     private javax.swing.JButton Calc1;
     private javax.swing.JComboBox InsertBox;
+    private javax.swing.JTextArea MethArea;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
