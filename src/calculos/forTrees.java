@@ -76,17 +76,21 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
      * @return retonar un dato generico que son los ingresados en la lista.
      */
     public dp getAVL(Arbol_AVL avl){
-        if(_bitDiference==cero)
+        if(_bitDiference==cero){
             return (dp)avl.getRaiz().getDato();
-        else if(_bitDiference==uno)
-            return (dp)_array.get((_lenght-1)/2);
-        else
-            return (dp)_array.get(_lenght-1);
+        }
+        else if(_bitDiference==uno){
+            return (dp)_array.get((_lenght-uno)/dos);
+        }
+        else{
+            _array.sort(null);
+            return (dp)_array.get(_lenght-uno);
+        }
     }
     
     /**
      * metodo para obtener un dato segun lo que se haya pedido como busqueda,
-     * si es busqueda o borrado.
+     * si es busqueda.
      * @param abb dato de la clase Arbol_binario, este es el arbol con el cual 
      * estamos operando.
      * @return retonar un dato generico que son los ingresados en la lista.
@@ -94,26 +98,27 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
     public dp getBi(Arbol_binario abb){
         if(_bitDiference==cero)
             return (dp)abb.getRoot().getDato();
-        else if(_bitDiference==uno)
-            return (dp)_array.get((_lenght-1)/2);
+        else if(_bitDiference==uno){
+            return (dp)_array.get((_lenght-uno)/dos);
+        }
         else
             return (dp)_array.get(_lenght-1);
     }
     
     /**
      * metodo para obtener un dato segun lo que se haya pedido como busqueda,
-     * si es busqueda o borrado.
+     * si es busqueda.
      * @param asp dato de la clase Arbol_splay, este es el arbol con el cual 
      * estamos operando.
      * @return retonar un dato generico que son los ingresados en la lista.
      */
     public dp getSp(Arbol_splay asp){
         if(_bitDiference==cero)
-            return (dp)_array.get(cero);
+            return (dp)_array.get(_lenght-uno);
         else if(_bitDiference==uno)
-            return (dp)_array.get((_lenght-1)/2);
+            return (dp)_array.get((_lenght-uno)/dos);
         else
-            return (dp)asp.getRoot().getDato();
+            return (dp)_array.get(cero);
     }
     
     /**
@@ -127,9 +132,96 @@ public class forTrees <dp extends Comparable<dp>> implements Constantes{
         if(_bitDiference==cero)
             return (dp)arn.getRoot().getDato();
         else if(_bitDiference==uno)
-            return (dp)_array.get((_lenght-1)/2);
+            return (dp)_array.get((_lenght-uno)/dos);
+        else{
+            _array.sort(null);
+            return (dp)_array.get(_lenght-1);
+        }
+    }
+    
+    /**
+     * metodo para obtener un dato segun lo pedido, usado exclusivamente 
+     * para cuando se realizan busquedas o borrados
+     * @param avl dato de la clase Arbol_AVL, este es el arbol con el cual 
+     * estamos operando.
+     * @return retonar un dato generico que son los ingresados en la lista.
+     */
+    public dp getAVLDel(Arbol_AVL avl){
+        if(_bitDiference==cero){
+            _array.sort(null);
+            _array.remove(--_lenght);
+            return (dp)_array.get(_lenght-uno);
+        }
+        else if(_bitDiference==uno){
+            _array.remove((--_lenght)/dos);
+            return (dp)_array.get((_lenght-uno)/dos);
+        }
+        else{
+            return (dp)avl.getRaiz().getDato();
+        }
+    }
+    
+    /**
+     * metodo para obtener un dato segun lo que se haya pedido como busqueda,
+     * si es borrado.
+     * @param abb dato de la clase Arbol_binario, este es el arbol con el cual 
+     * estamos operando.
+     * @return retonar un dato generico que son los ingresados en la lista.
+     */
+    public dp getBiDel(Arbol_binario abb){
+        if(_bitDiference==uno){
+            dp dato =(dp)_array.get((_lenght)/dos);
+            _array.remove((--_lenght)/dos);
+            return dato;
+        }
+        _array.sort(null);
+        _array.remove(--_lenght);
+        return (dp)_array.get(_lenght-uno);
+    }
+    
+    /**
+     * metodo para obtener un dato segun lo que se haya pedido como busqueda,
+     * si es borrado.
+     * @param asp dato de la clase Arbol_splay, este es el arbol con el cual 
+     * estamos operando.
+     * @return retonar un dato generico que son los ingresados en la lista.
+     */
+    public dp getSpDel(Arbol_splay asp){
+        if(_bitDiference==cero){
+            _array.sort(null);
+            _array.remove(--_lenght);
+            return (dp)_array.get(_lenght-1);
+        }
+        else if(_bitDiference==uno){
+            _array.remove((--_lenght)/dos);
+            return (dp)_array.get((_lenght-uno)/dos);
+        }
+        else{
+            dp dato = (dp) _array.get(cero);
+            _array.remove(cero);
+            return dato;
+        }
+    }
+    
+    /**
+     * metodo para obtener un dato segun lo que se haya pedido como busqueda,
+     * si es busqueda o borrado.
+     * @param arn dato de la clase Arbol_RN, este es el arbol con el cual 
+     * estamos operando.
+     * @return retonar un dato generico que son los ingresados en la lista.
+     */
+    public dp getRNDel(Arbol_RN arn){
+        if(_bitDiference==cero){
+            _array.sort(null);
+            _array.remove(--_lenght);
+            return (dp)_array.get(_lenght-uno);
+        }
+        else if(_bitDiference==uno){
+            _array.remove((--_lenght)/dos);
+            return (dp)_array.get((_lenght-uno)/dos);
+        }
         else
-            return (dp)_array.get(cero);
+            return (dp)arn.getRoot().getDato();
     }
     
     /**

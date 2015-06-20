@@ -67,7 +67,7 @@ public class CalcTime implements Constantes{
         }
         if(pInstruccion==delete){
             for(int i=0; i<(_Dato.largo()-1);i++){
-                int dato= (int)_Dato.getAVL(_AVL);
+                int dato= (int)_Dato.getAVLDel(_AVL);
                 tmp=System.nanoTime();
                 _AVL.delete(dato);
                 tmp2=System.nanoTime();
@@ -113,7 +113,7 @@ public class CalcTime implements Constantes{
         }
         if(pInstruccion==delete){
             for(int i=0; i<(_Dato.largo());i++){
-                int dato= (int)_Dato.getBi(_binario);
+                int dato= (int)_Dato.getBiDel(_binario);
                 tmp=System.nanoTime();
                 _binario.delete(dato);
                 tmp2=System.nanoTime();
@@ -159,7 +159,7 @@ public class CalcTime implements Constantes{
         }
         if(pInstruccion==delete){
             for(int i=0; i<(_Dato.largo()/50);i++){
-                int dato= (int)_Dato.getRN(_RN);
+                int dato= (int)_Dato.getRNDel(_RN);
                 tmp=System.nanoTime();
                 _RN.delete(dato);
                 tmp2=System.nanoTime();
@@ -205,7 +205,7 @@ public class CalcTime implements Constantes{
         }
         if(pInstruccion==delete){
             for(int i=0; i<(_Dato.largo());i++){
-                int dato= (int)_Dato.getSp(_splay);
+                int dato= (int)_Dato.getSpDel(_splay);
                 tmp=System.nanoTime();
                 _splay.delete(dato);
                 tmp2=System.nanoTime();
@@ -309,18 +309,18 @@ public class CalcTime implements Constantes{
     public static void main(String[] args) {
         long tmp=0;
         for(int i =0;i<1001;i+=100){
-            CalcTime nuevo = new CalcTime(i,2);
+            CalcTime nuevo = new CalcTime(i,1);
             //tmp=nuevo.listaSDoble(1);
             //tmp=nuevo.listaSDoble(2);
             //tmp=nuevo.listaSDoble(3);
             //tmp=nuevo.AVL(1);
-            //tmp=nuevo.AVL(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.AVL(2);//**---no funciona para el mejor de los casos---
             //tmp=nuevo.AVL(3);
             //tmp=nuevo.splay(1);
-            //tmp=nuevo.splay(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.splay(2);//**---no funciona para el mejor y medio caso---
             //tmp=nuevo.splay(3);
             //tmp=nuevo.binario(1);
-            //tmp=nuevo.binario(2);**---no funciona para el mejor de los casos---
+            //tmp=nuevo.binario(2);
             //tmp=nuevo.binario(3);
             //tmp=nuevo.RN(1);
             //tmp=nuevo.RN(3);
