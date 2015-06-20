@@ -305,11 +305,11 @@ public class CalcTime implements Constantes{
      * casos de prueba, para el segundo espacio en la instancia de la 
      * clase CalcTime no poner un cero y descomentar alguno de los 
      * tiempos para arboles que digan que no funcionan para el mejor de los casos
-     * por que se cae.
+     * por que se cae.**
     public static void main(String[] args) {
         long tmp=0;
         for(int i =0;i<1001;i+=100){
-            CalcTime nuevo = new CalcTime(i,1);
+            CalcTime nuevo = new CalcTime(i,0);
             //tmp=nuevo.listaSDoble(1);
             //tmp=nuevo.listaSDoble(2);
             //tmp=nuevo.listaSDoble(3);

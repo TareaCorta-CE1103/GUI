@@ -115,8 +115,11 @@ public class forArrays implements Constantes{
      * se quiere crear un arreglo.
      */
     private void normal(int pCantMax){
-        for (int i=0; i<pCantMax; i++){
-            _datos[i]=_rnd.nextInt(pCantMax)+1;
+        int i =0;
+        for(;i<(pCantMax/2);i++)
+            _datos[i]=i;
+        for(int x=pCantMax;i<pCantMax;i++,x--){
+            _datos[i]=x;
         }
     }
     
@@ -132,5 +135,12 @@ public class forArrays implements Constantes{
         for (int i=pCantMax-1; i>0; i--,x++){
             _datos[x]=i;
         }
+    }
+    
+    public static void main(String[] args) {
+        forArrays nuevo =new forArrays(100,0);
+        int[] arreglo =nuevo.getArreglo();
+        for(int i =0; i<arreglo.length;i++)
+            System.out.println(arreglo[i]);
     }
 }
