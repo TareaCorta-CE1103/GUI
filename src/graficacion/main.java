@@ -47,6 +47,7 @@ public class main extends javax.swing.JFrame implements Constantes{
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("structures benchmark");
         setMinimumSize(new java.awt.Dimension(550, 380));
         getContentPane().setLayout(null);
 
@@ -88,7 +89,7 @@ public class main extends javax.swing.JFrame implements Constantes{
 
         jLabel5.setText("Seleccione alguna de las categorías");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 30, 340, 40);
+        jLabel5.setBounds(150, 30, 340, 40);
 
         jMenu1.setText("Archivo");
 

@@ -6,7 +6,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import facade.facade;
-import lists.ListaSdoble;
 import lists.Nodo;
 import calculos.Constantes;
 import lists.ListaSimple;
@@ -214,7 +213,7 @@ public class Grafico implements Constantes{
     /**casos de prueba,ordenamientos, inserciones y busquedas quedan listas
      * pero los borrados de los arboles siguen si funcionar, no se porque, 
      * quisiera saberlo, ya quiero que termine el semestre :'''(
-     **/
+     **
     public static void main(String[] args) {
         ListaSimple lista= new ListaSimple();
         //lista.enQueue(42);
@@ -225,7 +224,7 @@ public class Grafico implements Constantes{
         //lista.enQueue(46);
         //lista.enQueue(47);
         Grafico nuevo= new Grafico(lista);
-    }
+    }*/
 }
  
 

@@ -137,10 +137,12 @@ public class forArrays implements Constantes{
         }
     }
     
+    /**
+     * caso de prueba.
     public static void main(String[] args) {
         forArrays nuevo =new forArrays(100,0);
         int[] arreglo =nuevo.getArreglo();
         for(int i =0; i<arreglo.length;i++)
             System.out.println(arreglo[i]);
-    }
+    }*/
 }
